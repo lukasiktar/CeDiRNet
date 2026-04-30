@@ -1,0 +1,14 @@
+docker run --gpus all -it cedirnet:latest
+
+
+docker run --gpus all -it --rm \
+  --shm-size=8g \
+  -v /home/istrazivac/LukaSiktar/VANGUARD/CeDiRNet:/workspace/CeDiRNet \
+  cedirnet:latest
+
+export DATASET=CARPK
+export OUTPUT_DIR="workspace/CeDiRNet/exp"
+export CARPK_DIR="/workspace/CeDiRNet/datasets/CARPK/datasets"
+
+
+python3 src/train.py --config num_gpus=1 train_dataset.num_workers=0 train_dataset.batch_size=2 display=False

@@ -316,7 +316,7 @@ class Trainer:
             difficult = (((ignore & 8) | (ignore & 2)) > 0).squeeze(dim=1) if ignore is not None else torch.zeros_like(instances)
 
             # get gt_centers from polar_gt and convert them to dictionary (filter-out non visible and ignored examples)
-            _, _, _, _, gt_centers, _, _, _ = CenterDirGroundtruth.parse_polar_groundtruth(centerdir_gt)
+            _, _, _, _, gt_centers = CenterDirGroundtruth.parse_groundtruth(centerdir_gt)
             gt_centers_dict = CenterDirGroundtruth.convert_gt_centers_to_dictionary(gt_centers,
                                                                                     instances=instances,
                                                                                     ignore=loss_ignore)
